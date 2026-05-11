@@ -305,7 +305,7 @@ export const products: Product[] = [
     category: "Interactive Toys",
     soldCount: 620,
     shippingNote: "Free shipping",
-    videoUrl: "https://www.douyin.com/jingxuan/search/%E6%AF%9B%E6%AF%9B%E8%99%AB%E8%BF%BD%E8%BF%BD%E4%B9%90?modal_id=7514515424067751206",
+    videoBvid: "BV1qEwUzHE22",
   },
 ];
 
