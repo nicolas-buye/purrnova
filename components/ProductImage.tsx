@@ -20,6 +20,10 @@ export default function ProductImage({ product, size = "card" }: ProductImagePro
       return <FeatherWandVisual scale={scale} size={size} wrapperClass={baseSize} theme={product.colorTheme} />;
     case "cat-tunnel":
       return <CatTunnelVisual scale={scale} size={size} wrapperClass={baseSize} theme={product.colorTheme} />;
+    case "smart-rolling-ball":
+      return <SmartRollingBallVisual scale={scale} size={size} wrapperClass={baseSize} theme={product.colorTheme} />;
+    case "caterpillar-chaser":
+      return <CaterpillarChaserVisual scale={scale} size={size} wrapperClass={baseSize} theme={product.colorTheme} />;
     default:
       return (
         <div className={`${baseSize} rounded-2xl bg-gradient-to-br from-[#1a1a1f] to-[#0f0f10] border border-[#27272a]/50 flex items-center justify-center`}>
@@ -470,6 +474,279 @@ function CatTunnelVisual({
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         className="absolute w-1 h-1 rounded-full blur-[0.5px]"
         style={{ top: "15%", right: "22%", background: theme.glow, opacity: 0.4 }}
+      />
+    </div>
+  );
+}
+
+/* ───────── Smart Rolling Ball Visual ───────── */
+
+function SmartRollingBallVisual({
+  scale,
+  size,
+  wrapperClass,
+  theme,
+}: {
+  scale: number;
+  size: string;
+  wrapperClass: string;
+  theme: Product["colorTheme"];
+}) {
+  const ballSize = size === "hero" ? "55%" : size === "detail" ? "62%" : "50%";
+
+  return (
+    <div className={`${wrapperClass} rounded-2xl bg-gradient-to-br from-[#14101a] via-[#0f0f16] to-[#0f0f10] flex items-center justify-center overflow-hidden relative`}>
+      {/* Ambient glow */}
+      <div
+        className="absolute rounded-full blur-3xl opacity-25"
+        style={{
+          width: ballSize,
+          height: ballSize,
+          background: `radial-gradient(circle, ${theme.glow}40 0%, transparent 70%)`,
+        }}
+      />
+
+      {/* Motion trail rings */}
+      <motion.div
+        animate={{ rotate: 360, scale: [1, 1.08, 1] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute rounded-full border opacity-25"
+        style={{
+          width: `calc(${ballSize} + 20%)`,
+          height: `calc(${ballSize} + 20%)`,
+          borderColor: `${theme.glow}40`,
+          borderStyle: "dashed",
+          borderWidth: "1px",
+        }}
+      />
+
+      {/* Second trail ring */}
+      <motion.div
+        animate={{ rotate: -360, scale: [1.05, 1, 1.05] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute rounded-full border opacity-15"
+        style={{
+          width: `calc(${ballSize} + 35%)`,
+          height: `calc(${ballSize} + 35%)`,
+          borderColor: `${theme.glow}30`,
+          borderStyle: "dashed",
+          borderWidth: "1px",
+        }}
+      />
+
+      {/* Main sphere */}
+      <motion.div
+        whileHover={size === "card" ? { scale: 1.05 } : undefined}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="absolute rounded-full"
+        style={{
+          width: ballSize,
+          height: ballSize,
+          background: `radial-gradient(circle at 40% 35%, ${theme.from} 0%, ${theme.via} 50%, ${theme.to} 100%)`,
+          boxShadow: `0 0 60px ${theme.glow}20, 0 0 120px ${theme.glow}0c, inset 0 0 30px ${theme.glow}0a`,
+          border: `1px solid ${theme.glow}25`,
+        }}
+      >
+        {/* Internal geometric pattern — concentric hex hint */}
+        <div className="absolute inset-[15%] rounded-full border border-white/[0.03]" />
+        <div className="absolute inset-[30%] rounded-full border border-white/[0.02]" />
+
+        {/* Specular highlight */}
+        <div
+          className="absolute rounded-full"
+          style={{
+            top: "14%",
+            left: "22%",
+            width: "40%",
+            height: "30%",
+            background: "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 50%, transparent 100%)",
+            transform: "rotate(-10deg)",
+          }}
+        />
+
+        {/* LED indicator dots */}
+        <motion.div
+          animate={{ opacity: [0.4, 1, 0.4] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute rounded-full"
+          style={{
+            top: "60%",
+            left: "55%",
+            width: size === "hero" ? "3%" : "2%",
+            height: size === "hero" ? "3%" : "2%",
+            background: theme.glow,
+            boxShadow: `0 0 6px ${theme.glow}`,
+          }}
+        />
+        <motion.div
+          animate={{ opacity: [1, 0.4, 1] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute rounded-full"
+          style={{
+            top: "62%",
+            left: "63%",
+            width: size === "hero" ? "2.5%" : "1.8%",
+            height: size === "hero" ? "2.5%" : "1.8%",
+            background: theme.glow,
+            boxShadow: `0 0 4px ${theme.glow}`,
+          }}
+        />
+      </motion.div>
+
+      {/* Floating particles */}
+      {[0, 1, 2].map((i) => (
+        <motion.div
+          key={i}
+          animate={{
+            y: [-8, 8, -8],
+            x: [-3, 3, -3],
+            opacity: [0.2, 0.6, 0.2],
+          }}
+          transition={{
+            duration: 2.5 + i * 0.6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.4,
+          }}
+          className="absolute w-1 h-1 rounded-full blur-[0.5px]"
+          style={{
+            top: `${25 + i * 22}%`,
+            right: `${12 + i * 10}%`,
+            background: theme.glow,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ───────── Caterpillar Chaser Visual ───────── */
+
+function CaterpillarChaserVisual({
+  scale,
+  size,
+  wrapperClass,
+  theme,
+}: {
+  scale: number;
+  size: string;
+  wrapperClass: string;
+  theme: Product["colorTheme"];
+}) {
+  const segmentCount = 5;
+  const segmentW = size === "hero" ? "14%" : size === "detail" ? "16%" : "12%";
+
+  return (
+    <div className={`${wrapperClass} rounded-2xl bg-gradient-to-br from-[#101612] via-[#0f1410] to-[#0f0f10] flex items-center justify-center overflow-hidden relative`}>
+      {/* Ambient glow */}
+      <div
+        className="absolute rounded-full blur-3xl opacity-20"
+        style={{
+          width: "50%",
+          height: "40%",
+          bottom: "20%",
+          background: `radial-gradient(ellipse, ${theme.glow}30 0%, transparent 70%)`,
+        }}
+      />
+
+      {/* Suction cup at top */}
+      <div className="absolute top-[8%] flex flex-col items-center">
+        <div
+          className="rounded-t-full"
+          style={{
+            width: size === "hero" ? "30px" : "22px",
+            height: size === "hero" ? "14px" : "10px",
+            background: `linear-gradient(180deg, ${theme.glow}15, #ffffff08)`,
+            border: `1px solid ${theme.glow}20`,
+            borderBottom: "none",
+          }}
+        />
+        {/* Wand shaft */}
+        <motion.div
+          animate={{ rotate: [-3, 3, -3] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="origin-top"
+          style={{
+            width: "2px",
+            height: size === "hero" ? "50px" : "35px",
+            background: `linear-gradient(180deg, #ffffff18, ${theme.glow}30)`,
+          }}
+        />
+      </div>
+
+      {/* Segmented caterpillar body */}
+      <div className="absolute top-[28%] flex flex-col items-center gap-[2px]">
+        {Array.from({ length: segmentCount }).map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              x: [0, i % 2 === 0 ? 4 : -4, 0],
+            }}
+            transition={{
+              duration: 0.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.12,
+            }}
+            className="rounded-full"
+            style={{
+              width: segmentW,
+              height: `calc(${segmentW} * 0.85)`,
+              background: `linear-gradient(135deg, ${theme.glow}${55 - i * 8}, ${theme.glow}${35 - i * 6})`,
+              border: `1px solid ${theme.glow}30`,
+              boxShadow: `0 2px 8px ${theme.glow}15`,
+              borderRadius: "45% 45% 50% 50%",
+            }}
+          >
+            {/* Segment highlight */}
+            <div
+              className="absolute rounded-full"
+              style={{
+                top: "15%",
+                left: "18%",
+                right: "18%",
+                height: "30%",
+                background: "linear-gradient(180deg, rgba(255,255,255,0.08), transparent)",
+              }}
+            />
+          </motion.div>
+        ))}
+
+        {/* Tail tip */}
+        <motion.div
+          animate={{ rotate: [-8, 8, -8] }}
+          transition={{ duration: 0.6, repeat: Infinity, ease: "easeInOut" }}
+          className="origin-top"
+          style={{ marginTop: "-1px" }}
+        >
+          <div
+            className="rounded-full"
+            style={{
+              width: `calc(${segmentW} * 0.55)`,
+              height: `calc(${segmentW} * 0.45)`,
+              background: `linear-gradient(135deg, ${theme.glow}30, ${theme.glow}15)`,
+              border: `1px solid ${theme.glow}20`,
+            }}
+          />
+        </motion.div>
+      </div>
+
+      {/* Floor shadow / surface hint */}
+      <div
+        className="absolute bottom-[12%] rounded-full blur-md opacity-20"
+        style={{
+          width: "50%",
+          height: "6%",
+          background: theme.glow,
+        }}
+      />
+
+      {/* Sparkle particles */}
+      <motion.div
+        animate={{ opacity: [0.3, 0.7, 0.3], y: [-2, 2, -2] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute w-1 h-1 rounded-full blur-[0.5px]"
+        style={{ top: "18%", right: "25%", background: theme.glow }}
       />
     </div>
   );

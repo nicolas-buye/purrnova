@@ -33,6 +33,7 @@ export interface Product {
   soldCount: number;
   shippingNote: string;
   videoBvid?: string;
+  videoUrl?: string;
 }
 
 export const products: Product[] = [
@@ -200,12 +201,118 @@ export const products: Product[] = [
     shippingNote: "Free shipping over $50",
     videoBvid: "BV15ZSFB7E6S",
   },
+  {
+    id: "smart-rolling-ball",
+    name: "Smart Rolling Ball",
+    price: 39.99,
+    compareAtPrice: 54.99,
+    description:
+      "Smart motion-sensing ball that darts, spins, and taunts your cat into action.",
+    longDescription:
+      "The Smart Rolling Ball uses intelligent motion sensors to detect your cat's proximity and react with unpredictable darting movements. Three play modes — gentle roll, chase mode, and random sprint — keep even the most jaded indoor cat engaged. USB-C rechargeable with a 10-hour battery, and the silent motor won't disturb your work calls.",
+    tagline: "The ball that plays back.",
+    emoji: "🔮",
+    rating: 4.9,
+    reviewCount: 726,
+    badge: "New",
+    features: [
+      "Smart proximity sensor — reacts to your cat's movement",
+      "Three play modes: gentle, chase, and random sprint",
+      "USB-C rechargeable, 10hr battery life",
+      "Silent motor — won't disturb work or sleep",
+      "Auto obstacle avoidance — never gets stuck",
+    ],
+    bestFor: "Cats who need more than just rolling — they need a challenge.",
+    colorTheme: {
+      from: "#1a1220",
+      via: "#14102a",
+      to: "#100f1a",
+      glow: "#a78bfa",
+    },
+    reviews: [
+      {
+        id: "r8",
+        author: "Olivia W.",
+        avatar: "O",
+        rating: 5,
+        text: "My cat was bored of every toy within a day. This ball? Two weeks and she still chases it every morning. The random mode is genius — it never moves the same way twice.",
+        date: "2026-04-30",
+        verified: true,
+      },
+      {
+        id: "r9",
+        author: "Kevin S.",
+        avatar: "K",
+        rating: 5,
+        text: "The proximity sensor is what makes this different. When my cat walks away, the ball stops. When she comes back, it starts. Battery actually lasts the full 10 hours too.",
+        date: "2026-05-02",
+        verified: true,
+      },
+    ],
+    category: "Interactive Toys",
+    soldCount: 950,
+    shippingNote: "Free shipping",
+    videoBvid: "BV1wow9eHEHx",
+  },
+  {
+    id: "caterpillar-chaser",
+    name: "Caterpillar Chaser",
+    price: 59.99,
+    compareAtPrice: 74.99,
+    description:
+      "Suction-cup mounted wiggling caterpillar that drives cats wild with lifelike movement.",
+    longDescription:
+      "The Caterpillar Chaser mounts securely to any smooth surface with a powerful suction cup, then uses intelligent motion to wiggle, twitch, and dart just like real prey. The segmented body creates realistic crawling movement your cat can't resist. Adjustable wand angle lets you target floor play or air pouncing. USB-C rechargeable, and the durable silicone body survives even the most aggressive hunters.",
+    tagline: "Lifelike movement. Irresistible prey.",
+    emoji: "🐛",
+    rating: 4.8,
+    reviewCount: 518,
+    badge: "New",
+    features: [
+      "Powerful suction cup — mounts to any smooth surface",
+      "Lifelike segmented crawling motion",
+      "Adjustable wand angle for floor or air play",
+      "USB-C rechargeable with 8hr battery",
+      "Durable silicone body — bite and scratch resistant",
+    ],
+    bestFor: "Cats who need a hunting challenge they can actually catch.",
+    colorTheme: {
+      from: "#121a14",
+      via: "#0f1a12",
+      to: "#0f1010",
+      glow: "#4ade80",
+    },
+    reviews: [
+      {
+        id: "r10",
+        author: "Priya M.",
+        avatar: "P",
+        rating: 5,
+        text: "I stuck this on my kitchen floor and my cat went absolutely insane. The wiggling motion is so realistic — she genuinely thinks it's prey. Best $60 I've spent on her.",
+        date: "2026-05-05",
+        verified: true,
+      },
+      {
+        id: "r11",
+        author: "Daniel K.",
+        avatar: "D",
+        rating: 5,
+        text: "The suction cup is incredibly strong — my 14lb Maine Coon hasn't pulled it off yet. The adjustable angle means I can switch between floor mode and air pouncing. Clever design.",
+        date: "2026-04-28",
+        verified: true,
+      },
+    ],
+    category: "Interactive Toys",
+    soldCount: 620,
+    shippingNote: "Free shipping",
+    videoUrl: "https://www.douyin.com/jingxuan/search/%E6%AF%9B%E6%AF%9B%E8%99%AB%E8%BF%BD%E8%BF%BD%E4%B9%90?modal_id=7514515424067751206",
+  },
 ];
 
 export const siteStats = {
-  totalReviews: 3400,
+  totalReviews: 4600,
   averageRating: 4.9,
-  happyCats: "5,000+",
+  happyCats: "7,000+",
   guarantee: "30-Day Happy Cat Guarantee",
   freeShippingThreshold: 50,
 };

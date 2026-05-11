@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest *)",
+      "Bash(npm install *)",
+      "Bash(tasklist)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(npx next *)",
+      "Bash(curl -s http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__0-auq4u._.css)",
+      "Bash(taskkill //F //PID 22256)",
+      "Bash(python3 -c \"import sys; html=sys.stdin.read\\(\\); idx=html.find\\('opacity:0'\\); print\\(html[max\\(0,idx-150\\):idx+150]\\)\")",
+      "Bash(taskkill //F //IM node.exe)",
+      "WebSearch",
+      "Bash(start *)",
+      "WebFetch(domain:www.youtube.com)",
+      "WebFetch(domain:www.dideo.ir)",
+      "WebFetch(domain:cats.com)",
+      "WebFetch(domain:www.catster.com)",
+      "WebFetch(domain:www.businessinsider.com)",
+      "WebFetch(domain:cat.fm)",
+      "Bash(npx tsc *)",
+      "WebFetch(domain:localhost)",
+      "Bash(gh *)",
+      "Bash(vercel *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(curl *)",
+      "Bash(git config *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(npx vercel *)",
+      "WebFetch(domain:charming-biscochitos-f3eee6.netlify.app)",
+      "Bash(npx netlify-cli *)",
+      "WebFetch(domain:detail.1688.com)",
+      "WebFetch(domain:www.douyin.com)"
+    ]
+  }
+}

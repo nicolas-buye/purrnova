@@ -6,20 +6,22 @@ import Link from "next/link";
 
 const videos = [
   {
-    id: "BV19b421Y7r2",
-    title: "Auto Cat Ball in Action",
-    subtitle: "智能溜猫球，猫咪玩到停不下来",
-    likes: "2.3万",
-    productId: "auto-cat-ball",
+    id: "BV1wow9eHEHx",
+    title: "Smart Rolling Ball in Action",
+    subtitle: "智能感应球，猫咪追到停不下来",
+    likes: "3.2万",
+    productId: "smart-rolling-ball",
     productLabel: "Shop this toy →",
   },
   {
-    id: "BV1Rp4y1578f",
-    title: "Feather Wand Playtime",
-    subtitle: "逗猫棒从小玩到大，猫咪最爱",
-    likes: "1.8万",
-    productId: "feather-teaser-wand",
+    id: "douyin-caterpillar",
+    type: "douyin" as const,
+    title: "Caterpillar Chaser Wiggle",
+    subtitle: "毛毛虫追追乐，猫咪疯狂追逐",
+    likes: "2.8万",
+    productId: "caterpillar-chaser",
     productLabel: "Shop this toy →",
+    douyinUrl: "https://www.douyin.com/jingxuan/search/%E6%AF%9B%E6%AF%9B%E8%99%AB%E8%BF%BD%E8%BF%BD%E4%B9%90?modal_id=7514515424067751206",
   },
   {
     id: "BV15ZSFB7E6S",
@@ -102,25 +104,18 @@ export default function VideoShowcase() {
               <div className="rounded-2xl overflow-hidden border border-[#27272a]/50 bg-[#141414] group">
                 {/* Video player area */}
                 <div className="relative aspect-video bg-black">
-                  {activeId === video.id ? (
-                    <iframe
-                      src={getEmbedUrl(video.id)}
-                      className="absolute inset-0 w-full h-full"
-                      allowFullScreen
-                      scrolling="no"
-                      frameBorder="no"
-                      allow="autoplay; encrypted-media; picture-in-picture"
-                    />
-                  ) : (
-                    <button
-                      onClick={() => setActiveId(video.id)}
+                  {"douyinUrl" in video && video.douyinUrl ? (
+                    <a
+                      href={video.douyinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="absolute inset-0 flex items-center justify-center cursor-pointer group/play"
                     >
-                      {/* Thumbnail placeholder with gradient */}
+                      {/* Thumbnail gradient */}
                       <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1f] via-[#14141a] to-[#0f0f10]" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-                      {/* Play button */}
+                      {/* TikTok-style play button */}
                       <motion.div
                         whileHover={{ scale: 1.08 }}
                         whileTap={{ scale: 0.95 }}
@@ -137,11 +132,61 @@ export default function VideoShowcase() {
                         </svg>
                       </motion.div>
 
-                      {/* Click to play text */}
-                      <span className="absolute bottom-4 left-4 text-xs text-white/60 font-light z-10">
-                        点击播放
+                      {/* TikTok badge */}
+                      <span className="absolute top-3 right-3 z-10 flex items-center gap-1 px-2 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 text-[10px] text-white/70">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                        </svg>
+                        Watch on Douyin
                       </span>
-                    </button>
+
+                      {/* Click hint */}
+                      <span className="absolute bottom-4 left-4 text-xs text-white/60 font-light z-10">
+                        点击观看
+                      </span>
+                    </a>
+                  ) : (
+                    activeId === video.id ? (
+                      <iframe
+                        src={getEmbedUrl(video.id)}
+                        className="absolute inset-0 w-full h-full"
+                        allowFullScreen
+                        scrolling="no"
+                        frameBorder="no"
+                        allow="autoplay; encrypted-media; picture-in-picture"
+                      />
+                    ) : (
+                      <button
+                        onClick={() => setActiveId(video.id)}
+                        className="absolute inset-0 flex items-center justify-center cursor-pointer group/play"
+                      >
+                        {/* Thumbnail gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1f] via-[#14141a] to-[#0f0f10]" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                        {/* Play button */}
+                        <motion.div
+                          whileHover={{ scale: 1.08 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="relative z-10 w-16 h-16 rounded-full bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover/play:bg-white/25 transition-colors shadow-2xl"
+                        >
+                          <svg
+                            width="24"
+                            height="26"
+                            viewBox="0 0 24 28"
+                            fill="white"
+                            className="ml-1"
+                          >
+                            <path d="M0 0v28l22-14L0 0Z" />
+                          </svg>
+                        </motion.div>
+
+                        {/* Click to play text */}
+                        <span className="absolute bottom-4 left-4 text-xs text-white/60 font-light z-10">
+                          点击播放
+                        </span>
+                      </button>
+                    )
                   )}
                 </div>
 
